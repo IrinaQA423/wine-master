@@ -1,12 +1,12 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from collections import defaultdict
-from collections import OrderedDict
+from collections import defaultdict, OrderedDict
 import os
+import datetime
+
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-import datetime
 import pandas
-import pprint
+
+from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 
 def group_wines_from_excel(file_path):
@@ -16,12 +16,12 @@ def group_wines_from_excel(file_path):
 
     category_wines = defaultdict(list)
     ordered_wines = OrderedDict()
-    
+
     for wine in wines:
         wine['is_best_offer'] = 'Выгодное предложение' in str(wine.values())
         category_wines[wine['Категория']].append(wine)
         ordered_wines = OrderedDict(sorted(category_wines.items()))
-    
+
     return dict(ordered_wines)
 
 
@@ -29,7 +29,7 @@ def main():
     load_dotenv()
     file_path = os.getenv('WINE3', default=None)
     category_wines = group_wines_from_excel(file_path)
-    
+
     env = Environment(
         loader=FileSystemLoader('.'),
         autoescape=select_autoescape(['html', 'xml'])
@@ -51,6 +51,7 @@ def main():
         years=str(years),
         year_word=year_word,
         wines=category_wines,
+        drinks='Напитки',
     )
 
     with open('output.html', 'w', encoding="utf8") as file:
