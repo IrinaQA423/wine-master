@@ -15,15 +15,13 @@ def group_wines_from_excel(file_path):
     wines = excel_data_df.to_dict(orient='records')
 
     category_wines = defaultdict(list)
+    ordered_wines = OrderedDict()
+    
     for wine in wines:
         wine['is_best_offer'] = 'Выгодное предложение' in str(wine.values())
         category_wines[wine['Категория']].append(wine)
-
-    sorted_categories = sorted(category_wines.keys())
-    ordered_wines = OrderedDict()
-    for category in sorted_categories:
-        ordered_wines[category] = category_wines[category]
-
+        ordered_wines = OrderedDict(sorted(category_wines.items()))
+    
     return dict(ordered_wines)
 
 
