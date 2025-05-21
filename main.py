@@ -12,10 +12,10 @@ import pprint
 def group_wines_from_excel(file_path):
     excel_data_df = pandas.read_excel(file_path)
     excel_data_df = excel_data_df.where(pandas.notnull(excel_data_df), None)
-    data_dict = excel_data_df.to_dict(orient='records')
+    wines = excel_data_df.to_dict(orient='records')
 
     category_wines = defaultdict(list)
-    for wine in data_dict:
+    for wine in wines:
         wine['is_best_offer'] = 'Выгодное предложение' in str(wine.values())
         category_wines[wine['Категория']].append(wine)
 
@@ -52,7 +52,7 @@ def main():
     rendered_page = template.render(
         years=str(years),
         year_word=year_word,
-        data_dict=category_wines,
+        wines=category_wines,
     )
 
     with open('output.html', 'w', encoding="utf8") as file:
