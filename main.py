@@ -1,6 +1,8 @@
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from collections import defaultdict
 from collections import OrderedDict
+import os
+from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas
@@ -26,7 +28,8 @@ def group_wines_from_excel(file_path):
 
 
 def main():
-    file_path = 'wine3.xlsx'
+    load_dotenv()
+    file_path = os.getenv('WINE3', default=None)
     category_wines = group_wines_from_excel(file_path)
     
     env = Environment(
