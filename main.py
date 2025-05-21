@@ -34,7 +34,7 @@ def main():
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    template = env.get_template('index.html')
+    template = env.get_template('wine_shop.html')
 
     birth_year = 1920
     current_year = datetime.datetime.now().year
