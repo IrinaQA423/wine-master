@@ -17,7 +17,6 @@ https://github.com/IrinaQA423/wine-master.git
 pip install -r requirements.txt
 ```
 
-
 - Запустите сайт через терминал 
 
 ```sh
@@ -40,6 +39,11 @@ python main.py
 |Красные вина |Киндзмараули | Саперави       | 350   |kindzmarauli.png | Выгодное предложение |
 
 
+## Как открыть необходимый  файл `Excel`?
+
+В корне проекта создайте файл `.env` и укажите в нем путь к нужному файлу.
+
+![](https://github.com/IrinaQA423/gists1/blob/main/Screenshot_17.png?raw=true)
 
 ## Цели проекта
 
