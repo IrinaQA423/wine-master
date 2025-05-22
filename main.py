@@ -55,7 +55,6 @@ def main():
         years=str(years),
         year_word=year_word,
         wines=category_wines,
-        drinks='Напитки',
     )
 
     with open('output.html', 'w', encoding="utf8") as file:
