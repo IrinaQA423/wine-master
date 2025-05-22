@@ -27,7 +27,7 @@ def group_wines_from_excel(file_path):
 
 def main():
     load_dotenv()
-    file_path = os.getenv('WINE3', default=None)
+    file_path = os.getenv('WINE', default=None)
     category_wines = group_wines_from_excel(file_path)
 
     env = Environment(
