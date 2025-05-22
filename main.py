@@ -25,6 +25,15 @@ def group_wines_from_excel(file_path):
     return ordered_wines
 
 
+def get_year_word(years):
+    if years % 10 == 1 and years % 100 != 11:
+        return "год"
+    elif years % 10 in [2, 3, 4] and not (years % 100 in [12, 13, 14]):
+        return "года"
+    else:
+        return "лет"
+
+
 def main():
     load_dotenv()
     file_path = os.getenv('EXCEL_WINE', default=None)
@@ -40,13 +49,8 @@ def main():
     birth_year = 1920
     current_year = datetime.datetime.now().year
     years = current_year - birth_year
-    if years % 10 == 1 and years % 100 != 11:
-        year_word = "год"
-    elif years % 10 in [2, 3, 4] and not (years % 100 in [12, 13, 14]):
-        year_word = "года"
-    else:
-        year_word = "лет"
-
+    year_word = get_year_word(years)
+    
     rendered_page = template.render(
         years=str(years),
         year_word=year_word,
