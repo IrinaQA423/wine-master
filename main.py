@@ -22,7 +22,7 @@ def group_wines_from_excel(file_path):
         category_wines[wine['Категория']].append(wine)
         ordered_wines = OrderedDict(sorted(category_wines.items()))
 
-    return dict(ordered_wines)
+    return ordered_wines
 
 
 def main():
